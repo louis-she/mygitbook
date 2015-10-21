@@ -129,6 +129,14 @@ tmpresult = Py_BuildValue("s#", it->msg, it->len);
 返回值必须为PyObject对象，C++中的返回值会直接返回给python调用者
 
 
+### 编译
+
+```c
+gcc -Ixxx/include/python2.7     \\
+    -Ixxx/lib/python2.7/config  \\
+    -lxxx/libpython2.7.a        \\
+    -shared 
+```
 
 
 
