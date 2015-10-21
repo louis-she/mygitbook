@@ -95,6 +95,38 @@ PyObject* wrap_bigpipe_subscriber(PyObject* self, PyObject* args) {
 }
 ```
 
+先看参数： **PyObject\* self, PyObject\* args**
+
+第一个参数必不可少，self应该是来标记模块本身的
+第二个参数，如果该函数接收参数的话（在入口处定义），那么这里第二个参数也是必不可少的
+
+接下来是最重要的
+```c++
+if (! PyArg_ParseTuple(args, "llssss", &msg_id, 
+    &pipe_id, &pipename, &token, &confpath, &conffile))
+```
+这一行代码
+
+**PyArg_ParseTuple** 是用来将python **格式化** 到指定的C++变量中的， 比如这里 format 为 "llssss" 则表示该python方法接收6个参数，从左至右的类型依次为long,long,string,string,string,string,string，会依次写入到后面传入的6个C变量中（如果变量类型不一致可能会core dump），具体的format可以取的字符串可以参考 [这里](https://docs.python.org/2/c-api/arg.html)
+
+然后需要关注
+
+```c++
+result = PyList_New(precv_node_list.size());
+//...
+PyList_SetItem(result, index, tmpresult);
+```
+
+**PyList_New** 宏实际上会创建一个PyObject对象，注意在python中，所以的类型实际上都是PyObject类型的，包括int，string等，这个宏返回的PyObject在python中实际上是一个List对象，这里可以用`PyList_SetItem`去为这个PyObject对象增加元素。
+
+```c++
+tmpresult = Py_BuildValue("s#", it->msg, it->len);
+
+```
+
+
+
+
 
 
 
