@@ -1,3 +1,3 @@
 # mygitbook
 
-:w can't save???
+vim mode :w can't save???
