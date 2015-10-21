@@ -135,7 +135,8 @@ tmpresult = Py_BuildValue("s#", it->msg, it->len);
 gcc -Ixxx/include/python2.7     \\
     -Ixxx/lib/python2.7/config  \\
     -lxxx/libpython2.7.a        \\
-    -shared 
+    -o xxx.so                   \\
+    -shared xxx.cpp
 ```
 
 
