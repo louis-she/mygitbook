@@ -121,9 +121,13 @@ PyList_SetItem(result, index, tmpresult);
 
 ```c++
 tmpresult = Py_BuildValue("s#", it->msg, it->len);
-
 ```
 
+**Py_BuildValue** 也是一个经常使用的宏，该宏可以创建任意一个python对象，这里使用这个宏创建了一个**二进制**对象，具体的使用方法见 [这里](https://docs.python.org/2/c-api/arg.html)
+
+**返回值**
+
+返回值必须为PyObject对象，C++中的返回值会直接返回给python调用者
 
 
 
