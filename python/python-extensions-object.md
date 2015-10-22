@@ -86,7 +86,7 @@ typedef struct {
 `其余的` 在这里加任何成员，这些相当于member variables，每次当用户调用成员方法时，都可以通过`self`对象去操作这里的值，这里可以维护一些在python obj整个生命周期都
 
 
-下面是析构函数的实现：
+**是析构函数的实现**
 
 ```c++
 /**
@@ -100,6 +100,8 @@ static void BplibDestructor(bplib_BplibObject* self) {
 ```
 这里基本上做了一些释放链接的工作和反初始化的工作，常见的比如mysql链接这样的resource，都需要在这个函数中手动关闭，因为不能保证用户会调用close方法去关闭链接。
 
+
+**成员函数结构体**
 ```c++
 /**
  * ByMethodDef is used to bind a bounch of funcs
@@ -117,7 +119,7 @@ static PyMethodDef Bplib_methods[] = {
 };
 ```
 
-每这里定义了6个成员方法，最后一个为占位使用，以第一个为例子：
+这里定义了6个成员方法，最后一个为占位使用，以第一个为例子：
 
 * `initSubscriber` 为方法名称
 * `(PyCFunction)initSubscriber` 为方法地址
@@ -169,6 +171,16 @@ static PyObject* initSubscriber(bplib_BplibObject* self, PyObject *args) {
 这个方法，跟前一篇说到的一般的方法，最大的不同在于方法的第一个参数，`bplib_BplibObject* self`，这个参数包括之前在析构函数中也有这个参数，通过这个参数，可以访问到刚刚提到的`bplib_BplibObject` 这个成员中的方法
 
 
+**构造函数的实现**
+
+```c++
+static int Bplib_init(bplib_BplibObject* self) {
+    self->is_bp_publisher_init = 0;
+    self->is_bp_subscribe_init = 0;
+    return 0;
+}
+```
+构造函数一般来说对 `bplib_BplibObject` 中的一些成员进行初始化就行了
 
 
 
