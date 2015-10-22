@@ -1,3 +1,5 @@
-# mygitbook
+# Louis' Notes
 
-vim mode :w can't save???
+* python笔记
+    * [python C扩展 -- 函数](python/python-extension-functions.md)
+    * [python C扩展 -- 类](python/python-extensions-object.md)
