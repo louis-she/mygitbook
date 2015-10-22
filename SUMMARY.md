@@ -2,5 +2,5 @@
 
 * [Introduction](README.md)
 * [python](python.md)
-   * [hehe](hehe.md)
+   * [python扩展函数](python-extension-function.md)
 
