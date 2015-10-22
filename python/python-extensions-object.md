@@ -68,5 +68,103 @@ static PyTypeObject bplib_BplibType = {
 | (initproc)Bplib_init| 构造函数地址 |
 
 
+下面是析构函数的实现：
+
+```c++
+/**
+ * Destructor for python
+ */
+static void BplibDestructor(bplib_BplibObject* self) {
+    self->subscribe.uninit();
+    self->publisher.uninit();
+    self->ob_type->tp_free((PyObject*)self);
+}
+```
+这里基本上做了一些释放链接的工作和反初始化的工作，常见的比如mysql链接这样的resource，都需要在这个函数中手动关闭，因为不能保证用户会调用close方法去关闭链接。
+
+构造函数实现：
+```c++
+/**
+ * ByMethodDef is used to bind a bounch of funcs
+ * to a custom python type. Now we just bind 2 funcs
+ * to the Bplib object.
+ */
+static PyMethodDef Bplib_methods[] = {
+    {"initSubscriber", (PyCFunction)initSubscriber, METH_VARARGS, "initSubscriber"},
+    {"initPublisher", (PyCFunction)initPublisher, METH_VARARGS, "initPublisher"},
+    {"uninitSubscriber", (PyCFunction)uninitSubscriber, METH_NOARGS, "uninitPublisher"},
+    {"uninitPublisher", (PyCFunction)uninitPublisher, METH_NOARGS, "uninitPublisher"},
+    {"get", (PyCFunction)get, METH_VARARGS, "get"},
+    {"put", (PyCFunction)put, METH_VARARGS, "put"},
+    {NULL}  /* Sentinel */
+};
+```
+
+每这里定义了6个成员方法，最后一个为占位使用，以第一个为例子：
+
+* `initSubscriber` 为方法名称
+* `(PyCFunction)initSubscriber` 为方法地址
+* `METH_VARARGS` 表示该方法需要接受参数
+* `initSubscriber` doc string
+
+下面是 initSubscriber 方法的实现：
+
+```c++
+/**
+ * env initialize, will raise an exception when
+ * error occured. wrap a try catch to this
+ *
+ * params in python
+ *
+ * @param pipename  string
+ * @param token     string
+ * @param confpath  string
+ * @param conffile  string
+ *
+ * @return 1
+ */
+static PyObject* initSubscriber(bplib_BplibObject* self, PyObject *args) {
+    int _errno, ret;
+    char _error[1024];
+    char *pipename, *token, *confpath, *conffile;
+
+    PyArg_ParseTuple(args, "ssss", &pipename, &token, &confpath, &conffile);
+
+    com_loadlog(confpath, conffile);
+    bigpipe_stomp_t::getinstance()->ignore_bad_pipe();
+
+    ret = self->subscribe.init_env(pipename, token, confpath, conffile);
+    if (0 != ret) {
+        strcpy(_error, "bigpipe init env failed");
+        _errno = ret;
+        BpError = PyErr_NewException("bp.error", NULL, NULL);
+        PyObject *errorObject = Py_BuildValue("si", _error, _errno);
+        PyErr_SetObject(BpError, errorObject);
+        return NULL;
+    }
+
+    self->is_bp_subscribe_init = 1;
+    return Py_BuildValue("i", 0);
+}
+```
+
+
+这个方法，跟前一篇说到的一般的方法，最大的不同
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
