@@ -82,7 +82,6 @@ static void BplibDestructor(bplib_BplibObject* self) {
 ```
 这里基本上做了一些释放链接的工作和反初始化的工作，常见的比如mysql链接这样的resource，都需要在这个函数中手动关闭，因为不能保证用户会调用close方法去关闭链接。
 
-构造函数实现：
 ```c++
 /**
  * ByMethodDef is used to bind a bounch of funcs
@@ -149,7 +148,7 @@ static PyObject* initSubscriber(bplib_BplibObject* self, PyObject *args) {
 ```
 
 
-这个方法，跟前一篇说到的一般的方法，最大的不同
+这个方法，跟前一篇说到的一般的方法，最大的不同在于方法的第一个参数，`bplib_BplibObject* self`，这个参数包括之前在析构函数中也有这个参数，这个参数实际上是指向
 
 
 
