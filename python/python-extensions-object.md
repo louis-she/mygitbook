@@ -68,6 +68,24 @@ static PyTypeObject bplib_BplibType = {
 | (initproc)Bplib_init| 构造函数地址 |
 
 
+定义python obj 映射到 C++的结构体：
+
+```c++
+typedef struct {
+    PyObject_HEAD
+    /* Type-specific fields go here. */
+    // bigpipe subscribe obj
+    bigpipe_async_subscriber_t subscribe;
+    bigpipe_publisher_t publisher;
+    int is_bp_subscribe_init;
+    int is_bp_publisher_init;
+} bplib_BplibObject;
+```
+`PyObject_HEAD` 这个是必须的
+
+`其余的` 在这里加任何成员，这些相当于member variables，每次当用户调用成员方法时，都可以通过`self`对象去操作这里的值，这里可以维护一些在python obj整个生命周期都
+
+
 下面是析构函数的实现：
 
 ```c++
@@ -148,7 +166,10 @@ static PyObject* initSubscriber(bplib_BplibObject* self, PyObject *args) {
 ```
 
 
-这个方法，跟前一篇说到的一般的方法，最大的不同在于方法的第一个参数，`bplib_BplibObject* self`，这个参数包括之前在析构函数中也有这个参数，这个参数实际上是指向
+这个方法，跟前一篇说到的一般的方法，最大的不同在于方法的第一个参数，`bplib_BplibObject* self`，这个参数包括之前在析构函数中也有这个参数，通过这个参数，可以访问到刚刚提到的`bplib_BplibObject` 这个成员中的方法
+
+
+
 
 
 
