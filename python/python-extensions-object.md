@@ -60,7 +60,7 @@ static PyTypeObject bplib_BplibType = {
 };
 ```
 
-|name| 解释 |
+|值| 解释 |
 | -- | -- |
 |bplib.Bplib| python中的模块名称 |
 |(destructor)BplibDestructor | 析构函数地址 |
