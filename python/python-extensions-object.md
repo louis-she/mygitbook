@@ -184,6 +184,28 @@ static int Bplib_init(bplib_BplibObject* self) {
 
 
 
+### 抛出异常
+
+全局作用于中定义
+
+```c++
+static PyObject *BpError;
+```
+
+然后在任意环境中
+
+```c++
+BpError = PyErr_NewException("bp.error", NULL, NULL);
+PyObject *errorObject = Py_BuildValue("si", _error, _errno);
+PyErr_SetObject(BpError, errorObject);
+return NULL;
+```
+
+1. 新建一个Exception对象，保存在BpError中
+2. 创建一个元祖（字符串，整形）类型的PyObject
+3. 调用PyErr_SetObject，设置最后一次异常
+4. return NULL来触发异常
+
 
 
 
