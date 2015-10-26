@@ -7,4 +7,4 @@
 
 
 * [树莓派折腾记](pi/readme.md)
-    * [TP-Link WN725N无线网卡](pi/wifi-installation)
+    * [TP-Link WN725N无线网卡](pi/wifi-installation.md)
