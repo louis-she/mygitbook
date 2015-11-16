@@ -55,5 +55,5 @@ while True:
 更有趣的是，如果把`size`改为一个比较小的数字，比如100，然后再执行程序，最后的结果就是跟期望的一样了， 即：
 /tmp/pipe_test/ 下有两个文件： 0 和 1，每个文件有100字节，然后内容也跟预期的一样。
 
-首先可以认定，pipe还是一对一得去读取比较好。
+首先可以认定，pipe还是一对一得去读取比较好。其他的，[不懂就问](http://stackoverflow.com/questions/33729216/multiprocess-write-to-one-pipe-in-python)。
 
