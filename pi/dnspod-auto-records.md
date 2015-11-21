@@ -1,7 +1,7 @@
 get domain id
 =============
 ```shell
-curl -X POST https://dnsapi.cn/Domain.Info -d 'login_token=11409,9447ebc4f003f108813bc3224f7ff56d&format=json&domain=cclouis.com'
+curl -X POST https://dnsapi.cn/Domain.Info -d 'login_token=11409,9447ebc4f**************24f7ff56d&format=json&domain=cclouis.com'
 ```
 
 ```json
@@ -39,7 +39,7 @@ curl -X POST https://dnsapi.cn/Domain.Info -d 'login_token=11409,9447ebc4f003f10
 get domain info
 ===============
 ```shell
-curl -X POST https://dnsapi.cn/Record.List -d "login_token=11409,9447ebc4f003f108813bc3224f7ff56d&format=json&domain_id=17642360&sub_domain=pi"
+curl -X POST https://dnsapi.cn/Record.List -d "login_token=11409,9447eb****************224f7ff56d&format=json&domain_id=17642360&sub_domain=pi"
 ```
 
 ```json
@@ -85,12 +85,12 @@ update record
 =============
 
 ```
-curl -X POST https://dnsapi.cn/Record.Remove -d 'login_token=11409,9447ebc4f003f108813bc3224f7ff56d&format=json&domain_id=17642360&record_id=128868915'
+curl -X POST https://dnsapi.cn/Record.Remove -d 'login_token=11409,9447e**********************ff56d&format=json&domain_id=17642360&record_id=128868915'
 
 {"status":{"code":"1","message":"Action completed successful","created_at":"2015-11-20 23:41:16"}}
 
 
-curl -X POST https://dnsapi.cn/Record.Create -d 'login_token=11409,9447ebc4f003f108813bc3224f7ff56d&format=json&domain_id=17642360&sub_domain=pi&record_type=A&value=8.8.4.4&record_line=默认'
+curl -X POST https://dnsapi.cn/Record.Create -d 'login_token=11409,9447e********************f7ff56d&format=json&domain_id=17642360&sub_domain=pi&record_type=A&value=8.8.4.4&record_line=默认'
 
 {"status":{"code":"1","message":"Action completed successful","created_at":"2015-11-20 23:41:16"},"record":{"id":"128869459","name":"pi","status":"enabled","weight":null}}
 ```
