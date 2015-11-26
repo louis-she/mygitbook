@@ -33,13 +33,13 @@ sys     0m3.418s
 
 **Input**
 ```
-time LC_ALL=C fgrep 1351939801 senselist0.log
-```
+begin=$(date +%s); time parallel -j100% --pipepart --block 100M -a senselist0.log fgrep "1351939801"; end=$(date +%s); echo "total time: $((end-begin))"```
 **Output**
 ```
-real	0m12.632s
-user	0m9.137s
-sys     0m3.462s
+real	0m3.286s
+user	0m10.367s
+sys     0m13.615s
+total   time: 3
 ```
 
 ----------------------------
