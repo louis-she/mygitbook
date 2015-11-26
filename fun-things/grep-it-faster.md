@@ -62,21 +62,6 @@ total time: 12
 
 **Input**
 ```
-begin=$(date +%s); time parallel -j100% --pipepart --block 100M -a senselist0.log fgrep "1351939801"; end=$(date +%s); echo "total time: $((end-begin))"```
-**Output**
-```
-real	0m35.802s
-user	0m31.264s
-sys     0m4.463s
-total time: 36
-```
-
-不能忍
-
-----------------------------
-
-**Input**
-```
 begin=$(date +%s); 
 time awk '{if($3==8842431714) {print $0}}' senselist0.log; 
 end=$(date +%s); 
