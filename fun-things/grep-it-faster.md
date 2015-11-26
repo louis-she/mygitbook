@@ -64,11 +64,13 @@ total time: 12
 begin=$(date +%s); time parallel -j100% --pipepart --block 100M -a senselist0.log fgrep "1351939801"; end=$(date +%s); echo "total time: $((end-begin))"```
 **Output**
 ```
-real	0m3.286s
-user	0m10.367s
-sys     0m13.615s
-total time: 3
+real	0m35.802s
+user	0m31.264s
+sys     0m4.463s
+total time: 36
 ```
+
+不能忍
 
 ----------------------------
 
