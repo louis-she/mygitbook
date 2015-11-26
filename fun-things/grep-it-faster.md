@@ -3,11 +3,12 @@ grep it faster!
 
 工作需求，需要grep一个大约20G的文件，昨天偷懒想直接获得答案就去so上提了问，结果最佳答案是“自己试试就知道了”，于是就自己试试了：（
 
-机器配置：
+环境和配置：
 
 * cpu 8 cores
 * mem 80GB
 * ssd disk
+* 测试文件18G 23717441行
 
 听说改locale会让grep更快于是实验前加上了`export LC_ALL=C`，原因是
 
