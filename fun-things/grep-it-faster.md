@@ -1,7 +1,16 @@
 grep it faster!
 ===============
 
-工作需求，需要grep一个大约20G的文件，就有了下面的实验：
+工作需求，需要grep一个大约20G的文件，昨天偷懒想直接获得答案就去so上提了问，结果最佳答案是“自己试试就知道了”，于是就自己试试了：（
+
+机器配置：
+
+* cpu 8 cores
+* mem 80GB
+* ssd disk
+
+听说改locale会让grep更快于是实验前加上了`export LC_ALL=C`
+（也做了不改locale的实验，貌似加了这个并没有变快，so上有人说快了两倍，不知道是不是grep版本的原因）
 
 ----------------------------
 
@@ -20,13 +29,16 @@ sys     0m3.538s
 
 **Input**
 ```
-time LC_ALL=C grep 1351939801 senselist0.log
-```
+begin=$(date +%s); 
+time fgrep "1351939801" senselist0.log; 
+end=$(date +%s); 
+echo "total time: $((end-begin))"```
 **Output**
 ```
 real	0m12.594s
 user	0m9.146s
 sys     0m3.418s
+total time: 13
 ```
 
 ----------------------------
