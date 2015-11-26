@@ -57,6 +57,8 @@ total time: 12
 
 ----------------------------
 
+#### AWK也试试
+
 **Input**
 ```
 begin=$(date +%s); time parallel -j100% --pipepart --block 100M -a senselist0.log fgrep "1351939801"; end=$(date +%s); echo "total time: $((end-begin))"```
