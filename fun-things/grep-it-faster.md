@@ -9,8 +9,11 @@ grep it faster!
 * mem 80GB
 * ssd disk
 
-听说改locale会让grep更快于是实验前加上了`export LC_ALL=C`
-（也做了不改locale的实验，貌似加了这个并没有变快，so上有人说快了两倍，不知道是不是grep版本的原因）
+听说改locale会让grep更快于是实验前加上了`export LC_ALL=C`，原因是
+
+" Simple byte comparison vs multiple byte character comparison
+
+但在不改locale的情况也做了实验，貌似改之后并没有变快，so上有人说快了两倍，不知道是不是grep版本的原因）
 
 ----------------------------
 
