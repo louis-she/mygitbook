@@ -47,11 +47,13 @@ echo "total time: $((end-begin))"
 ```
 **Output**
 ```
-real	0m12.594s
-user	0m9.146s
-sys     0m3.418s
-total time: 13
+real	0m12.607s
+user	0m9.102s
+sys     0m3.477s
+total time: 12
 ```
+
+跟grep比起来没什么不同
 
 ----------------------------
 
