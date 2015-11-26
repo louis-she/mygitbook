@@ -91,7 +91,7 @@ total time: 36
 
 ----------------------------
 
-#### 主角parallel登场
+#### parallel 文件分100M，并发数默认为cpu核心数
 
 **Input**
 ```shell
@@ -107,30 +107,49 @@ user	0m10.020s
 sys     0m13.591s
 total time: 4
 ```
+用了parallel后总体时间比之前快多了
 
 ----------------------------
 
+#### parallel 文件500MB，并发数默认
+
 **Input**
 ```
-
+begin=$(date +%s); 
+time parallel --pipepart --block 500M -a senselist0.log -k grep "8842431714"; 
+end=$(date +%s); 
+echo "total time: $((end-begin))"
 ```
 **Output**
 ```
-
+real	0m3.485s
+user	0m9.527s
+sys     0m12.772s
+total time: 3
 ```
+
+比刚刚还快了一些
 
 ----------------------------
 
 
 **Input**
 ```
-time LC_ALL=C parallel --pipe --block 100M grep 1351939801 < senselist0.log 2>/dev/null
+begin=$(date +%s); 
+time parallel --pipepart --block 500M -P0 -a senselist0.log -k grep "8842431714"; 
+end=$(date +%s); 
+echo "total time: $((end-begin))"
 ```
 
 **Output**
 
 ```
-real	0m46.055s
-user	0m25.843s
-sys     1m7.126s
+real	0m3.154s
+user	0m9.765s
+sys     0m13.141s
+total time: 3
 ```
+
+-P0表示尽可能得多并发，看来已经不能更快了
+
+----------------------------
