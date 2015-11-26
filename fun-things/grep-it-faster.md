@@ -39,7 +39,7 @@ begin=$(date +%s); time parallel -j100% --pipepart --block 100M -a senselist0.lo
 real	0m3.286s
 user	0m10.367s
 sys     0m13.615s
-total   time: 3
+total time: 3
 ```
 
 ----------------------------
