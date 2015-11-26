@@ -11,31 +11,40 @@ grep it faster!
 
 听说改locale会让grep更快于是实验前加上了`export LC_ALL=C`，原因是
 
-" Simple byte comparison vs multiple byte character comparison
+> Simple byte comparison vs multiple byte character comparison
 
-但在不改locale的情况也做了实验，貌似改之后并没有变快，so上有人说快了两倍，不知道是不是grep版本的原因）
+但在不改locale的情况也做了实验，貌似改之后并没有变快，so上有人说快了两倍，不知道是不是grep版本的原因
 
 ----------------------------
+
+#### 无脑grep
 
 **Input**
 ```
-grep 1351939801 senselist0.log
+begin=$(date +%s); 
+time grep "1351939801" senselist0.log; 
+end=$(date +%s); 
+echo "total time: $((end-begin))"
 ```
 **Output**
 ```
-real	0m12.671s
-user	0m9.104s
-sys     0m3.538s
+real	0m12.624s
+user	0m9.178s
+sys     0m3.417s
+total time: 12
 ```
 
 ----------------------------
+
+#### 无脑fgrep
 
 **Input**
 ```
 begin=$(date +%s); 
 time fgrep "1351939801" senselist0.log; 
 end=$(date +%s); 
-echo "total time: $((end-begin))"```
+echo "total time: $((end-begin))"
+```
 **Output**
 ```
 real	0m12.594s
