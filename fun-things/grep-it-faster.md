@@ -74,22 +74,38 @@ total time: 3
 
 **Input**
 ```
-
+begin=$(date +%s); 
+time awk '{if($3==8842431714) {print $0}}' senselist0.log; 
+end=$(date +%s); 
+echo "total time: $((end-begin))"
 ```
 **Output**
 ```
-
+real	0m35.866s
+user	0m31.278s
+sys     0m4.515s
+total time: 36
 ```
+
+用户CPU时间太长了
 
 ----------------------------
 
-**Input**
-```
+#### 主角parallel登场
 
+**Input**
+```shell
+begin=$(date +%s); 
+time parallel --pipepart --block 100M -a senselist0.log -k grep "8842431714"; 
+end=$(date +%s); 
+echo "total time: $((end-begin))"
 ```
 **Output**
 ```
-
+real	0m3.195s
+user	0m10.020s
+sys     0m13.591s
+total time: 4
 ```
 
 ----------------------------
