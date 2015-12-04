@@ -1,7 +1,14 @@
 class-1 install env
 ===================
 
-### tips
+### assignment
+
+#### classification vs. regression problem
+
+* **classification** 分类，现象一般用于产出没有连续性，比如天气晴，阴，下雨等
+* **regression** 回归，产出为连续性的，比如股价走势
+
+### 课上的 tips 粘贴出来了
 
 Thank you to Machine Learning Mentor, Tom Mosher, for compiling this list
 
