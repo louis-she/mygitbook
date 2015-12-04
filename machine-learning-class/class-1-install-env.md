@@ -8,6 +8,12 @@ class-1 install env
 * **classification** 分类，现象一般用于产出没有连续性，比如天气晴，阴，下雨等
 * **regression** 回归，产出为连续性的，比如股价走势
 
+#### supervisor algorithm vs. unsupervisor algorithm
+
+* **supervisor algorithm** 是对一个数据集合进行标记，相当于一个训练的单元是由数据和标记组成的，然后用这组数据训练机器，使其对未知的数据进行自动的标记，比如人脸识别，用一堆照片作为训练的数据集合，提前给这组照片加上分类（比如是人脸的加上人脸，是风景的加上风景）。用这组照片训练计算机，让他知道哪些特征的照片是风景，哪些特征的照片是人脸（其实就是像大脑一样思考），最后就可以达到识别的效果。
+* **unsupervisor algorithm** 比如
+
+
 ### 课上的 tips 粘贴出来了
 
 Thank you to Machine Learning Mentor, Tom Mosher, for compiling this list
